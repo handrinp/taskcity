@@ -1,33 +1,44 @@
 package com.taskcity.data;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-
+import org.junit.Assert;
 import org.junit.Test;
 
-import com.taskcity.TaskDTO;
+import com.taskcity.data.dto.DataFactory;
+import com.taskcity.data.dto.TaskDTO;
 
-public class MyJsonDSTest {
+public class DataSourceTest {
 	@Test
-	public void testTasksFunctionality() {
-		DataSource ds = new MyJsonDS("1kbad");
-		List<TaskDTO> tasks = ds.getTasks();
-
-		// horrible, quick and dirty test/hack that only works if I'm busy
-		int numTasksOriginally = tasks.size();
-		assertTrue(numTasksOriginally > 0);
+	public void testTaskDS() {
+		TaskDataSource ds = DataFactory.getInstance()
+				.createTaskDataSource("3cpmp");
+		int numTasksOriginally = ds.getTasks()
+				.size();
+		final String testID = "#TESTID";
 
 		// add a task
-		TaskDTO newTask = new TaskDTO("#TESTID", "Awesome", "test test test", 0);
+		TaskDTO newTask = new TaskDTO(testID, "Awesome", "test test test", 0);
 		ds.addTask(newTask);
-		assertEquals(numTasksOriginally + 1, ds.getTasks()
-				.size());
+		Assert.assertEquals(numTasksOriginally + 1, ds.numTasks());
 
 		// delete a task
-		ds.deleteTask("#TESTID");
-		assertEquals(numTasksOriginally, ds.getTasks()
-				.size());
+		ds.deleteTask(testID);
+		Assert.assertEquals(numTasksOriginally, ds.numTasks());
+	}
+
+	@Test
+	public void testUserDS() {
+		UserDataSource ds = DataFactory.getInstance()
+				.createUserDataSource();
+		int numUsersOriginally = ds.getUsers()
+				.size();
+		final String testUsername = "TEST_USERNAME";
+
+		// add a user
+		ds.createNewUser(testUsername);
+		Assert.assertEquals(numUsersOriginally + 1, ds.numUsers());
+
+		// delete a user
+		ds.deleteUser(testUsername);
+		Assert.assertEquals(numUsersOriginally, ds.numUsers());
 	}
 }
