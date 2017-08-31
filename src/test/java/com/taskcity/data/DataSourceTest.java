@@ -10,8 +10,7 @@ public class DataSourceTest {
 	public void testTaskDS() {
 		TaskDataSource ds = DataFactory.getInstance()
 				.createTaskDataSource("3cpmp");
-		int numTasksOriginally = ds.getTasks()
-				.size();
+		int numTasksOriginally = ds.numTasks();
 		final String testID = "#TESTID";
 
 		// add a task
@@ -28,8 +27,7 @@ public class DataSourceTest {
 	public void testUserDS() {
 		UserDataSource ds = DataFactory.getInstance()
 				.createUserDataSource();
-		int numUsersOriginally = ds.getUsers()
-				.size();
+		int numUsersOriginally = ds.numUsers();
 		final String testUsername = "TEST_USERNAME";
 
 		// add a user
