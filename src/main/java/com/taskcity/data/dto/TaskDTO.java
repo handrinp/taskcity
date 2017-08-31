@@ -1,5 +1,7 @@
 package com.taskcity.data.dto;
 
+import java.util.Comparator;
+
 import org.json.JSONObject;
 
 public class TaskDTO {
@@ -46,4 +48,7 @@ public class TaskDTO {
 	public String toString() {
 		return String.format("Task %s : [subject: %s, description: %s, due: %d]", id, subject, description, due);
 	}
+
+	public static final Comparator<TaskDTO> COMPARATOR = Comparator.comparing(TaskDTO::getSubject)
+			.thenComparingLong(TaskDTO::getDue);
 }
