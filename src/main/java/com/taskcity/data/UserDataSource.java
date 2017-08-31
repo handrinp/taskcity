@@ -9,6 +9,8 @@ public interface UserDataSource {
 
 	public int numUsers();
 
+	public UserDTO getUser(String username);
+
 	public void createNewUser(String username);
 
 	public void deleteUser(String username);
