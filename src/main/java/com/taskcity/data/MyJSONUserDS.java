@@ -12,6 +12,9 @@ public class MyJSONUserDS implements UserDataSource {
 	private static final String NEW_USER_URL = "https://api.myjson.com/bins";
 	private static final String NEW_USER_JSON = "{\"taskList\":[]}";
 
+	/**
+	 * Returns the list of all users in the table.
+	 */
 	@Override
 	public List<UserDTO> getUsers() {
 		List<UserDTO> users = new ArrayList<>();
@@ -21,6 +24,21 @@ public class MyJSONUserDS implements UserDataSource {
 		return users;
 	}
 
+	/**
+	 * Returns the UserDTO object corresponding to the passed in username, or null
+	 * if no such user exist.
+	 */
+	@Override
+	public UserDTO getUser(String username) {
+		return getUsers().stream()
+				.filter(user -> username.equals(user.getUsername()))
+				.findFirst()
+				.orElse(null);
+	}
+
+	/**
+	 * Returns the number of users
+	 */
 	@Override
 	public int numUsers() {
 		return JSONUtil.getJSON(USERS_BIN)
