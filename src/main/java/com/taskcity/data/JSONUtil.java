@@ -59,4 +59,41 @@ public class JSONUtil {
 
 		return new JSONObject(json.toString());
 	}
+
+	public static JSONObject postJSON(String serviceUrl, JSONObject json) {
+		HttpURLConnection conn = null;
+		StringBuilder jsonOutput = new StringBuilder();
+
+		try {
+			URL url = new URL(serviceUrl);
+			conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Content-Type", "application/json;");
+			conn.setRequestProperty("Accept", "application/json;");
+			conn.setDoOutput(true);
+			conn.setUseCaches(false);
+
+			OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
+			writer.write(json.toString());
+			writer.flush();
+			writer.close();
+			conn.getResponseCode();
+
+			InputStreamReader in = new InputStreamReader(conn.getInputStream());
+			int read;
+			char[] buff = new char[BUFFER_SIZE];
+
+			while ((read = in.read(buff)) != -1) {
+				jsonOutput.append(buff, 0, read);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (conn != null) {
+				conn.disconnect();
+			}
+		}
+
+		return new JSONObject(jsonOutput.toString());
+	}
 }
