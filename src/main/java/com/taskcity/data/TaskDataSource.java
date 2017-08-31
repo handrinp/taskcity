@@ -2,10 +2,12 @@ package com.taskcity.data;
 
 import java.util.List;
 
-import com.taskcity.TaskDTO;
+import com.taskcity.data.dto.TaskDTO;
 
-public interface DataSource {
+public interface TaskDataSource {
 	public List<TaskDTO> getTasks();
+
+	public int numTasks();
 
 	public void addTask(TaskDTO task);
 

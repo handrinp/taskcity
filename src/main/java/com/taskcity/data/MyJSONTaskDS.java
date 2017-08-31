@@ -3,34 +3,31 @@ package com.taskcity.data;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.taskcity.TaskDTO;
+import com.taskcity.data.dto.TaskDTO;
 
-public class MyJsonDS implements DataSource {
+public class MyJSONTaskDS implements TaskDataSource {
 	private String url;
 
-	public MyJsonDS(String myJsonID) {
+	public MyJSONTaskDS(String myJsonID) {
 		url = "https://api.myjson.com/bins/" + myJsonID;
 	}
 
 	@Override
 	public List<TaskDTO> getTasks() {
 		List<TaskDTO> tasks = new ArrayList<>();
-		JSONArray taskList = JSONUtil.getJSON(url)
-				.getJSONArray("taskList");
-		int numTasks = taskList.length();
-
-		for (int i = 0; i < numTasks; ++i) {
-			Object o = taskList.get(i);
-
-			if (o instanceof JSONObject) {
-				tasks.add(TaskDTO.of((JSONObject) o));
-			}
-		}
-
+		JSONUtil.getJSON(url)
+				.getJSONArray("taskList")
+				.forEach(o -> tasks.add(TaskDTO.of((JSONObject) o)));
 		return tasks;
+	}
+
+	@Override
+	public int numTasks() {
+		return JSONUtil.getJSON(url)
+				.getJSONArray("taskList")
+				.length();
 	}
 
 	@Override
@@ -44,22 +41,17 @@ public class MyJsonDS implements DataSource {
 	@Override
 	public void deleteTask(String idToDelete) {
 		JSONObject jo = JSONUtil.getJSON(url);
-		JSONArray taskList = jo.getJSONArray("taskList");
-		JSONArray newTaskList = new JSONArray();
-		int numTasks = taskList.length();
+		List<JSONObject> newTaskList = new ArrayList<>();
 
-		for (int i = 0; i < numTasks; ++i) {
-			Object o = taskList.get(i);
+		jo.getJSONArray("taskList")
+				.forEach(o -> {
+					JSONObject curTask = (JSONObject) o;
 
-			if (o instanceof JSONObject) {
-				JSONObject curTask = (JSONObject) o;
-				if (!TaskDTO.of(curTask)
-						.getID()
-						.equals(idToDelete)) {
-					newTaskList.put(curTask);
-				}
-			}
-		}
+					if (!curTask.getString("taskid")
+							.equals(idToDelete)) {
+						newTaskList.add(curTask);
+					}
+				});
 
 		jo.put("taskList", newTaskList);
 		JSONUtil.putJSON(url, jo);

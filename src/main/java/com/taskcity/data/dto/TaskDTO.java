@@ -1,4 +1,4 @@
-package com.taskcity;
+package com.taskcity.data.dto;
 
 import org.json.JSONObject;
 
