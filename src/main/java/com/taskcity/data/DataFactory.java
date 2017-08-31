@@ -1,12 +1,7 @@
-package com.taskcity.data.dto;
+package com.taskcity.data;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import com.taskcity.data.MyJSONTaskDS;
-import com.taskcity.data.MyJSONUserDS;
-import com.taskcity.data.TaskDataSource;
-import com.taskcity.data.UserDataSource;
 
 public class DataFactory {
 	private static DataFactory instance;

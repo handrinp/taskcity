@@ -3,7 +3,6 @@ package com.taskcity.data;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.taskcity.data.dto.DataFactory;
 import com.taskcity.data.dto.TaskDTO;
 
 public class DataSourceTest {
