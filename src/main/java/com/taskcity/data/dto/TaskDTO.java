@@ -37,6 +37,10 @@ public class TaskDTO {
 		return due;
 	}
 
+	public boolean isOverdue() {
+		return 0 < due && due < System.currentTimeMillis();
+	}
+
 	private static final String JSON_FORMAT = "{\"subject\":\"%s\",\"task\":\"%s\",\"due\":%d,\"taskid\":\"%s\"}";
 
 	public JSONObject asJSON() {
