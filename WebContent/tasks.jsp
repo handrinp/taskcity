@@ -2,7 +2,7 @@
 <%@page import="com.taskcity.data.dto.TaskDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.stream.Collectors"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%
 UserDTO userDTO;
@@ -22,7 +22,7 @@ if ((userDTO = (UserDTO)session.getAttribute("userDTO")) == null) {
 <meta name="author" content="Nick Handrick">
 <meta name="robots" content="noindex">
 <title>My Tasks</title>
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/tasks-styles.css">
 <link rel="icon" href="images/favicon.ico">
 </head>
 <body>
@@ -68,7 +68,12 @@ if ((userDTO = (UserDTO)session.getAttribute("userDTO")) == null) {
 			</div>
 			<div id="lastRow" class="tableRow">
 				<div class="c1">
-					<select id="subject"></select>
+					<select id="subject">
+						<option value="Misc">Misc</option>
+						<option value="School">School</option>
+						<option value="Social">Social</option>
+						<option value="Work">Work</option>
+					</select>
 				</div>
 				<div class="c2">
 					<input type="text" id="task">
@@ -126,7 +131,7 @@ if ((userDTO = (UserDTO)session.getAttribute("userDTO")) == null) {
 					for (int i = 0; i < 24; ++i) {
 						String ampm = "am";
 
-						if (i > 12) {
+						if (i >= 12) {
 							ampm = "pm";
 						}
 

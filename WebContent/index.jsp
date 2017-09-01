@@ -18,7 +18,7 @@
 	content="A website for saving and viewing tasks">
 <meta property="og:image" content="http://taskcity.tk/screenie.png">
 <title>taskcity</title>
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/frontpage-styles.css">
 <link rel="icon" href="images/favicon.ico">
 </head>
 <body>

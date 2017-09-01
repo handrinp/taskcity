@@ -6,7 +6,7 @@ body {
 	font-family: sans-serif;
 }
 
-button {
+button, input[type=submit] {
 	color: #eee;
 	border: 1px solid #000;
 	cursor: pointer;
@@ -84,11 +84,12 @@ input[type=text] {
 		margin: 6.5px auto;
 		font-size: 1.5em;
 	}
-	button {
+	button, input[type=submit] {
 		font-size: 1.25em;
 		line-height: 45px;
 		display: block;
 		margin: 6.5px auto;
+		padding: 0 5px;
 	}
 	.mobile {
 		display: none;
@@ -148,7 +149,7 @@ input[type=text] {
 		width: 80%;
 		font-size: 1.25em;
 	}
-	button {
+	button, input[type=submit] {
 		font-size: 1.25em;
 		line-height: 40px;
 		display: block;
