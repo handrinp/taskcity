@@ -5,8 +5,7 @@
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%
-UserDTO userDTO;
-if ((userDTO = (UserDTO)session.getAttribute("userDTO")) == null) {
+if (session.getAttribute("userDTO") == null) {
 	session.setAttribute("error", "You must be logged in to view that page");
 	response.sendRedirect("/taskcity");
 }
@@ -38,7 +37,7 @@ if ((userDTO = (UserDTO)session.getAttribute("userDTO")) == null) {
 			</div>
 			<div id="tableCells">
 				<%
-					userDTO = (UserDTO)session.getAttribute("userDTO");
+					UserDTO userDTO = (UserDTO)session.getAttribute("userDTO");
 					List<TaskDTO> tasks = userDTO.loadSortedTasks();
 					boolean isOdd = true;
 
@@ -52,11 +51,11 @@ if ((userDTO = (UserDTO)session.getAttribute("userDTO")) == null) {
 							TaskDTO task = tasks.get(i);
 				%>
 				<div class="tableRow <%=isOdd ? "odd" : "even"%>Row">
-					<div class="c1"><%=task.getSubject()%></div>
-					<div class="c2">
+					<div class="c1<%=task.isUrgent() ? " urgent" : ""%>"><%=task.getSubject()%></div>
+					<div class="c2<%=task.isUrgent() ? " urgent" : ""%>">
 						<span><%=task.getDescription()%></span>
 					</div>
-					<div class="c3"><%=task.getDue()%></div>
+					<div class="c3<%=task.isUrgent() ? " urgent" : ""%>"><%=task.dueString()%></div>
 					<div class="c4">
 						<button class="deleteButton" type="button"
 							onClick="deleteTask('<%=task.getID()%>')">&#x2717;</button>
