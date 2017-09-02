@@ -44,8 +44,4 @@ public class LoginServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		doGet(request, response);
 	}
-
-	@Override
-	public void destroy() {
-	}
 }
