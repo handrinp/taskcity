@@ -1,3 +1,11 @@
+<%@page import="com.taskcity.data.DataFactory"%>
+<%@page import="com.taskcity.data.UserDataSource"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%
+	UserDataSource ds = DataFactory.getInstance()
+			.createUserDataSource();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +21,7 @@
 	content="A website for saving and viewing tasks - frequently asked questions">
 <meta property="og:image" content="http://taskcity.tk/screenie.png">
 <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-<title>taskcity.tk | FAQs</title>
+<title>taskcity | FAQs</title>
 <link rel="stylesheet" href="css/frontpage-styles.css">
 <link rel="icon" href="images/favicon.ico">
 </head>
@@ -21,7 +29,7 @@
 	<div id="mainContent">
 		<div id="scheduleTable">
 			<div id="headerRow" class="tableRow">
-				<div class="cw faqRow">taskcity.tk - FAQs</div>
+				<div class="cw faqRow">taskcity - FAQs</div>
 			</div>
 			<div id="scheduleTable">
 				<div class="cp tableRow oddRow">
@@ -31,7 +39,8 @@
 				</div>
 				<div class="cp tableRow evenRow">
 					<p>
-						<span>go <a href="">here</a>, and the rest is obvious
+						<span>on the <a href="/taskcity">main page</a>, enter a new
+							username and press "Go"
 						</span>
 					</p>
 				</div>
@@ -49,24 +58,23 @@
 				</div>
 				<div class="cp tableRow oddRow">
 					<p>
-						<span>&#9679; how many people have a page currently?</span>
+						<span>&#9679; how many users exist currently?</span>
 					</p>
 				</div>
 				<div class="cp tableRow evenRow">
 					<p>
-						<span>5 people, including myself :)</span>
+						<span><%=ds.numUsers() - 1%> users, including myself :)</span>
 					</p>
 				</div>
 			</div>
 			<div id="lastRow" class="tableRow oddRow">
 				<div class="cw">
 					<p>
-						<a href="index.html">taskcity home</a>
+						<a href="/taskcity">back to the main page</a>
 					</p>
 				</div>
 			</div>
 		</div>
 	</div>
-	<script src="script.js"></script>
 </body>
 </html>

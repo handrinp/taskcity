@@ -29,7 +29,7 @@
 	<!-- FAQs -->
 	<servlet>
 		<servlet-name>faqs</servlet-name>
-		<jsp-file>/faqs.html</jsp-file>
+		<jsp-file>/faqs.jsp</jsp-file>
 	</servlet>
 
 	<servlet-mapping>
