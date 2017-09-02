@@ -8,5 +8,6 @@ tmp/
 local.properties
 .settings/
 .loadpath
+.classpath
 .recommenders
 target/
