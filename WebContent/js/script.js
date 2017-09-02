@@ -4,6 +4,7 @@
  ******************************************************************************/
 $(document).ready(function() {
 	closePopUp();
+	clearForms();
 });
 
 /*******************************************************************************
@@ -16,6 +17,15 @@ function removeTask(taskid) {
 	}
 
 	window.location = "/taskcity/removeTask?taskid=" + taskid;
+}
+
+function addTask() {
+	var id = Math.floor(Math.random() * 16777215).toString(16);
+	var subj = document.getElementById('subject').value;
+	var desc = document.getElementById('task').value;
+
+	window.location = "/taskcity/addTask?taskID=" + id + "&taskSubject=" + subj
+			+ "&taskDescription=" + desc + "&taskDue=" + currentDueValue;
 }
 
 /*******************************************************************************
@@ -45,9 +55,7 @@ function submitPopUp() {
 				+ document.getElementById('formYear').value + " "
 				+ document.getElementById('formTime').value;
 
-		var dateObj = new Date(dateString);
-		var numDays = (dateObj.getTime() - new Date().getTime()) / ONE_DAY;
-		currentDueValue = numDays;
+		currentDueValue = new Date(dateString).getTime();
 		closePopUp();
 	}
 }
@@ -75,7 +83,7 @@ function clearForms() {
 	document.getElementById('formTime').selectedIndex = 0;
 	document.getElementById('subject').selectedIndex = 0;
 	document.getElementById('task').value = '';
-	currentDueValue = '';
+	currentDueValue = 0;
 }
 
 function getTimeString(diff) {
