@@ -39,17 +39,19 @@ if ((userDTO = (UserDTO)session.getAttribute("userDTO")) == null) {
 			<div id="tableCells">
 				<%
 					userDTO = (UserDTO)session.getAttribute("userDTO");
-					if (userDTO != null) {
-						List<TaskDTO> tasks = userDTO.loadSortedTasks();
-	
-						if (tasks.isEmpty()) {
+					List<TaskDTO> tasks = userDTO.loadSortedTasks();
+					boolean isOdd = true;
+
+					if (tasks.isEmpty()) {
 				%>
 				<div id="cFull" class="tableRow evenRow">No more tasks :)</div>
 				<%
-						} else {
-							for (TaskDTO task : tasks) {
+					} else {
+
+						for (int i = 0; i < tasks.size(); ++i) {
+							TaskDTO task = tasks.get(i);
 				%>
-				<div class="tableRow evenRow">
+				<div class="tableRow <%=isOdd ? "odd" : "even"%>Row">
 					<div class="c1"><%=task.getSubject()%></div>
 					<div class="c2">
 						<span><%=task.getDescription()%></span>
@@ -61,12 +63,12 @@ if ((userDTO = (UserDTO)session.getAttribute("userDTO")) == null) {
 					</div>
 				</div>
 				<%
-							}
+							isOdd = !isOdd;
 						}
 					}
 				%>
 			</div>
-			<div id="lastRow" class="tableRow">
+			<div id="lastRow" class="tableRow <%=isOdd ? "odd" : "even"%>Row">
 				<div class="c1">
 					<select id="subject">
 						<option value="Misc">Misc</option>
@@ -100,7 +102,7 @@ if ((userDTO = (UserDTO)session.getAttribute("userDTO")) == null) {
 				onblur="validate('formMonth')">
 				<option value="0" selected>Select a Month</option>
 				<%
-					String[] months = { "January", "Februrary", "March", "April", "May", "June", "July", "August", "September",
+					String[] months = { "January", "February", "March", "April", "May", "June", "July", "August", "September",
 							"October", "November", "December" };
 					for (int i = 0; i < months.length; ++i) {
 				%>
