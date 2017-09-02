@@ -58,7 +58,7 @@ if (session.getAttribute("userDTO") == null) {
 					<div class="c3<%=task.isUrgent() ? " urgent" : ""%>"><%=task.dueString()%></div>
 					<div class="c4">
 						<button class="deleteButton" type="button"
-							onClick="deleteTask('<%=task.getID()%>')">&#x2717;</button>
+							onClick="removeTask('<%=task.getID()%>')">&#x2717;</button>
 					</div>
 				</div>
 				<%
