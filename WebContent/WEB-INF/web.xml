@@ -77,4 +77,15 @@
 		<servlet-name>tasks</servlet-name>
 		<url-pattern>/tasks</url-pattern>
 	</servlet-mapping>
+
+	<!-- Remove task -->
+	<servlet>
+		<servlet-name>removeTask</servlet-name>
+		<servlet-class>com.taskcity.servlet.RemoveTaskServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>removeTask</servlet-name>
+		<url-pattern>/removeTask</url-pattern>
+	</servlet-mapping>
 </web-app>

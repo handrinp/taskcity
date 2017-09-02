@@ -7,6 +7,18 @@ $(document).ready(function() {
 });
 
 /*******************************************************************************
+ * SERVLET FUNCTIONS
+ ******************************************************************************/
+function removeTask(taskid) {
+	// hack to prevent hashtag anger in the URL
+	if (taskid.startsWith("#")) {
+		taskid = taskid.replace("#", "HASHTAG");
+	}
+
+	window.location = "/taskcity/removeTask?taskid=" + taskid;
+}
+
+/*******************************************************************************
  * GUI FUNCTIONS
  ******************************************************************************/
 
