@@ -15,12 +15,6 @@
 <meta name="description"
 	content="A website for saving and viewing tasks - frequently asked questions">
 <meta name="author" content="Nick Handrick">
-<meta property="og:title" content="Task City | FAQs">
-<meta property="og:url" content="http://www.taskcity.tk/">
-<meta property="og:description"
-	content="A website for saving and viewing tasks - frequently asked questions">
-<meta property="og:image" content="http://taskcity.tk/screenie.png">
-<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 <title>taskcity | FAQs</title>
 <link rel="stylesheet" href="css/frontpage-styles.css">
 <link rel="icon" href="images/favicon.ico">
@@ -31,7 +25,7 @@
 			<div id="headerRow" class="tableRow">
 				<div class="cw faqRow">taskcity - FAQs</div>
 			</div>
-			<div id="scheduleTable">
+			<div id="tableCells">
 				<div class="cp tableRow oddRow">
 					<p>
 						<span>&#9679; how do I get an account?</span>
@@ -39,7 +33,7 @@
 				</div>
 				<div class="cp tableRow evenRow">
 					<p>
-						<span>on the <a href="/taskcity">main page</a>, enter a new
+						<span>on the <a href="../taskcity">main page</a>, enter a new
 							username and press "Go"
 						</span>
 					</p>
@@ -70,7 +64,7 @@
 			<div id="lastRow" class="tableRow oddRow">
 				<div class="cw">
 					<p>
-						<a href="/taskcity">back to the main page</a>
+						<a href="../taskcity">back to the main page</a>
 					</p>
 				</div>
 			</div>

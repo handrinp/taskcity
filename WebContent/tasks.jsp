@@ -10,15 +10,12 @@ if (session.getAttribute("userDTO") == null) {
 	response.sendRedirect("/taskcity");
 }
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta charset="utf-8" http-equiv="encoding">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-<meta name="description"
-	content="My personal website for saving and viewing tasks">
-<meta name="author" content="Nick Handrick">
 <meta name="robots" content="noindex">
 <title>My Tasks</title>
 <link rel="stylesheet" href="css/tasks-styles.css">

@@ -45,6 +45,13 @@ input[type=text] {
 	background-color: #45a;
 }
 
+.cw {
+	float: left;
+	text-align: center;
+	height: 60px;
+	width: 100%;
+}
+
 .tableRow {
 	float: none;
 }
@@ -55,10 +62,6 @@ input[type=text] {
 
 .evenRow {
 	background-color: #eee;
-}
-
-#lastRow .cw {
-	text-align: center;
 }
 
 .loginButton {
@@ -112,10 +115,10 @@ input[type=text] {
 	.c1 {
 		text-align: right;
 		padding-right: 10px;
-		width: 290px;
+		width: 190px;
 	}
 	.c2 {
-		width: 230px;
+		width: 330px;
 	}
 	.c3 {
 		width: 70px;
@@ -123,10 +126,10 @@ input[type=text] {
 	.cl {
 		text-align: right;
 		padding-right: 10px;
-		width: 180px;
+		width: 190px;
 	}
 	.cr {
-		width: 390px;
+		width: 400px;
 	}
 	#headerRow div {
 		font-size: 1.75em;
@@ -190,14 +193,21 @@ input[type=text] {
 	.c3 {
 		width: 20%;
 	}
+	.cl {
+		text-align: right;
+		padding: 15px 10px;
+		width: calc(35% - 20px);
+	}
+	.cr {
+		text-align: left;
+		padding: 15px 10px;
+		width: calc(65% - 20px);
+	}
 	#lastRow {
 		bottom: 0;
 	}
 	#tableCells {
 		padding: 60px 0;
-	}
-	#noAfterCells {
-		padding: 60px 0 0;
 	}
 	#headerRow div {
 		padding: 0 5px;
@@ -205,6 +215,7 @@ input[type=text] {
 		text-align: center;
 	}
 	.tableRow {
+		width: 100%;
 		height: 60px;
 		line-height: 60px;
 	}
