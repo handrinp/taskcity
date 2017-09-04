@@ -24,14 +24,14 @@ public class LoginServlet extends HttpServlet {
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		String to = "/taskcity/";
+		String to = "/";
 		HttpSession session = request.getSession();
 		String username = request.getParameter("username");
 		UserDTO userDTO;
 
 		if (username != null && (userDTO = userDataSource.getUser(username)) != null) {
 			session.setAttribute("userDTO", userDTO);
-			to = "/taskcity/tasks";
+			to = "/tasks";
 		} else {
 			session.removeAttribute("userDTO");
 			session.setAttribute("error", "Invalid username");

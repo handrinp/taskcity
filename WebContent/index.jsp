@@ -70,7 +70,7 @@
 					</p>
 				</div>
 				<div id="lastRow" class="tableRow oddRow">
-					<form action="/taskcity/login" method="GET">
+					<form action="/login" method="GET">
 						<div class="c1 desktop">
 							<p>Log in or sign up</p>
 						</div>

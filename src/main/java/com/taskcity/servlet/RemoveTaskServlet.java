@@ -24,7 +24,7 @@ public class RemoveTaskServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String taskid;
 		UserDTO userDTO;
-		String to = "/taskcity";
+		String to = "/";
 
 		if ((userDTO = (UserDTO) session.getAttribute("userDTO")) == null) {
 			session.setAttribute("error", "You need to be logged in to delete a task");
@@ -39,7 +39,7 @@ public class RemoveTaskServlet extends HttpServlet {
 			DataFactory.getInstance()
 					.createTaskDataSource(userDTO.getBin())
 					.deleteTask(taskid);
-			to = "/taskcity/tasks";
+			to = "/tasks";
 		}
 
 		response.sendRedirect(to);

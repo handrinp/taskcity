@@ -33,7 +33,7 @@
 				</div>
 				<div class="cp tableRow evenRow">
 					<p>
-						<span>on the <a href="../taskcity">main page</a>, enter a new
+						<span>on the <a href="../">main page</a>, enter a new
 							username and press "Go"
 						</span>
 					</p>
@@ -64,7 +64,7 @@
 			<div id="lastRow" class="tableRow oddRow">
 				<div class="cw">
 					<p>
-						<a href="../taskcity">back to the main page</a>
+						<a href="../">back to the main page</a>
 					</p>
 				</div>
 			</div>

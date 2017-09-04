@@ -23,7 +23,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<finalName>taskcity</finalName>
+		<finalName>ROOT</finalName>
 	</build>
 	<dependencies>
 		<dependency>

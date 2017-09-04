@@ -7,7 +7,7 @@
 <%
 if (session.getAttribute("userDTO") == null) {
 	session.setAttribute("error", "You must be logged in to view that page");
-	response.sendRedirect("/taskcity");
+	response.sendRedirect("/");
 }
 %>
 <!DOCTYPE html>

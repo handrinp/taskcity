@@ -24,7 +24,7 @@ public class AddTaskServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		HttpSession session = request.getSession();
 		UserDTO userDTO;
-		String to = "/taskcity";
+		String to = "/";
 
 		if ((userDTO = (UserDTO) session.getAttribute("userDTO")) == null) {
 			session.setAttribute("error", "You need to be logged in to add a task");
@@ -39,7 +39,7 @@ public class AddTaskServlet extends HttpServlet {
 			DataFactory.getInstance()
 					.createTaskDataSource(userDTO.getBin())
 					.addTask(newTask);
-			to = "/taskcity/tasks";
+			to = "/tasks";
 		}
 
 		response.sendRedirect(to);
