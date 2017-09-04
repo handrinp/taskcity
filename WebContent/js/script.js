@@ -19,7 +19,7 @@ function removeTask(taskid) {
 		taskid = taskid.replace("#", "HASHTAG");
 	}
 
-	window.location = "/taskcity/removeTask?taskid=" + taskid;
+	window.location = "/removeTask?taskid=" + taskid;
 }
 
 function addTask() {
@@ -27,7 +27,7 @@ function addTask() {
 	var subj = document.getElementById('subject').value;
 	var desc = document.getElementById('task').value;
 
-	window.location = "/taskcity/addTask?taskID=" + id + "&taskSubject=" + subj
+	window.location = "/addTask?taskID=" + id + "&taskSubject=" + subj
 			+ "&taskDescription=" + desc + "&taskDue=" + currentDueValue;
 }
 
