@@ -41,7 +41,7 @@ public class MySQLUserDS implements UserDataSource {
 		UserDTO user = null;
 
 		try (Connection con = MySQLUtils.getConnection()) {
-			String sql = "select * from users";
+			String sql = "select * from users where username='" + username + "'";
 			ResultSet rs = con.createStatement()
 					.executeQuery(sql);
 
@@ -49,7 +49,7 @@ public class MySQLUserDS implements UserDataSource {
 				user = UserDTO.of(rs);
 			}
 		} catch (SQLException e) {
-			Logger.log("numUsers failed", e);
+			Logger.log("getUser failed", e);
 		}
 
 		return user;
