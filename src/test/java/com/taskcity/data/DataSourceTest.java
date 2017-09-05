@@ -6,20 +6,22 @@ import org.junit.Test;
 import com.taskcity.data.dto.TaskDTO;
 
 public class DataSourceTest {
+	private static final String TEST_ID = "#TESTID";
+	private static final String TEST_USERNAME = "TEST_USERNAME";
+
 	@Test
 	public void testTaskDS() {
 		TaskDataSource ds = DataFactory.getInstance()
-				.createTaskDataSource("3cpmp");
+				.createTaskDataSource(TEST_USERNAME);
 		int numTasksOriginally = ds.numTasks();
-		final String testID = "#TESTID";
 
 		// add a task
-		TaskDTO newTask = new TaskDTO(testID, "Awesome", "test test test", 0);
+		TaskDTO newTask = new TaskDTO(TEST_ID, "Awesome", "test test test", 0);
 		ds.addTask(newTask);
 		Assert.assertEquals(numTasksOriginally + 1, ds.numTasks());
 
 		// delete a task
-		ds.deleteTask(testID);
+		ds.deleteTask(TEST_ID);
 		Assert.assertEquals(numTasksOriginally, ds.numTasks());
 	}
 
@@ -28,14 +30,13 @@ public class DataSourceTest {
 		UserDataSource ds = DataFactory.getInstance()
 				.createUserDataSource();
 		int numUsersOriginally = ds.numUsers();
-		final String testUsername = "TEST_USERNAME";
 
 		// add a user
-		ds.createNewUser(testUsername);
+		ds.createNewUser(TEST_USERNAME);
 		Assert.assertEquals(numUsersOriginally + 1, ds.numUsers());
 
 		// delete a user
-		ds.deleteUser(testUsername);
+		ds.deleteUser(TEST_USERNAME);
 		Assert.assertEquals(numUsersOriginally, ds.numUsers());
 	}
 }
