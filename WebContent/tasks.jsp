@@ -67,10 +67,15 @@ if (session.getAttribute("userDTO") == null) {
 			<div id="lastRow" class="tableRow <%=isOdd ? "odd" : "even"%>Row">
 				<div class="c1">
 					<select id="subject">
-						<option value="Misc">Misc</option>
-						<option value="School">School</option>
-						<option value="Social">Social</option>
-						<option value="Work">Work</option>
+						<%
+						List<String> subjects = userDTO.getSubjects();
+						for (int i = 0; i < subjects.size(); ++i) {
+							String subject = subjects.get(i);
+						%>
+						<option value="<%=subject%>"><%=subject%></option>
+						<%
+						}						
+						%>
 					</select>
 				</div>
 				<div class="c2">
