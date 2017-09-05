@@ -37,7 +37,7 @@ public class RemoveTaskServlet extends HttpServlet {
 			}
 
 			DataFactory.getInstance()
-					.createTaskDataSource(userDTO.getBin())
+					.createTaskDataSource(userDTO.getUsername())
 					.deleteTask(taskid);
 			to = "/tasks";
 		}

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.taskcity.Logger;
 import com.taskcity.data.DataFactory;
 import com.taskcity.data.UserDataSource;
 import com.taskcity.data.dto.UserDTO;
@@ -24,6 +25,7 @@ public class LoginServlet extends HttpServlet {
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		Logger.setLogger(getServletContext());
 		String to = "/";
 		HttpSession session = request.getSession();
 		String username = request.getParameter("username");

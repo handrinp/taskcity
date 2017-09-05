@@ -37,7 +37,7 @@ public class AddTaskServlet extends HttpServlet {
 			long due = Long.parseLong(request.getParameter("taskDue"));
 			TaskDTO newTask = new TaskDTO(id, subject, desc, due);
 			DataFactory.getInstance()
-					.createTaskDataSource(userDTO.getBin())
+					.createTaskDataSource(userDTO.getUsername())
 					.addTask(newTask);
 			to = "/tasks";
 		}
