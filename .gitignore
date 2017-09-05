@@ -11,3 +11,4 @@ local.properties
 .classpath
 .recommenders
 target/
+src/main/resources/taskcity.properties
