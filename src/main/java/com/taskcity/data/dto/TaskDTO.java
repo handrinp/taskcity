@@ -1,8 +1,12 @@
 package com.taskcity.data.dto;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Comparator;
 
 import org.json.JSONObject;
+
+import com.taskcity.Logger;
 
 public class TaskDTO {
 	private static final long URGENT_DURATION = 172_800_000L; // 48 hours, in milliseconds
@@ -105,4 +109,21 @@ public class TaskDTO {
 			.reversed()
 			.thenComparing(TaskDTO::getSubject)
 			.thenComparingLong(TaskDTO::getDue);
+
+	public static TaskDTO of(ResultSet rs) {
+		TaskDTO task = null;
+
+		String id;
+		try {
+			id = rs.getString("taskid");
+			String subject = rs.getString("subject");
+			String description = rs.getString("description");
+			long due = rs.getLong("due");
+			task = new TaskDTO(id, subject, description, due);
+		} catch (SQLException e) {
+			Logger.log("couldn't create TaskDTO from ResultSet", e);
+		}
+
+		return task;
+	}
 }
