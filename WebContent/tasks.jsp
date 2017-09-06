@@ -5,10 +5,11 @@
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%
-if (session.getAttribute("userDTO") == null) {
+UserDTO userDTO;
+if ((userDTO = (UserDTO)session.getAttribute("userDTO")) == null) {
 	session.setAttribute("error", "You must be logged in to view that page");
 	response.sendRedirect("/");
-}
+} else {
 %>
 <!DOCTYPE html>
 <html>
@@ -34,7 +35,6 @@ if (session.getAttribute("userDTO") == null) {
 			</div>
 			<div id="tableCells">
 				<%
-					UserDTO userDTO = (UserDTO)session.getAttribute("userDTO");
 					List<TaskDTO> tasks = userDTO.loadSortedTasks();
 					boolean isOdd = true;
 
@@ -162,3 +162,6 @@ if (session.getAttribute("userDTO") == null) {
 	<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
+<%
+	}
+%>
