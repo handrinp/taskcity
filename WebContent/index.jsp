@@ -19,19 +19,7 @@
 <body>
 	<div id="mainContent">
 		<div id="headerRow" class="tableRow">
-			<%
-				String err;
-				if ((err = (String) session.getAttribute("error")) != null) {
-					session.removeAttribute("error");
-			%>
-			<div class="cw errorRow"><%=err%></div>
-			<%
-				} else {
-			%>
 			<div class="cw">taskcity</div>
-			<%
-				}
-			%>
 		</div>
 		<div id="scheduleTable">
 			<div id="tableCells">
@@ -88,5 +76,38 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<%
+		String err;
+		if ((err = (String) session.getAttribute("error")) != null) {
+			session.removeAttribute("error");
+	%>
+	<div id="popUnder"></div>
+	<div id="errorPopUp">
+		<div class="popUpRow">
+			<h2>Error</h2>
+		</div>
+		<div class="popUpRow">
+			<p><%=err%></p>
+		</div>
+		<div class="popUpRow">
+			<button type="button" class="deleteButton"
+				onclick="closeErrorPopUp()">&#x2717;</button>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$('document').ready(function() {
+			$('#popUnder').css('display', 'block');
+			$('#errorPopUp').css('display', 'block');
+		});
+
+		function closeErrorPopUp() {
+			$('#popUnder').css('display', 'none');
+			$('#errorPopUp').css('display', 'none');
+		}
+	</script>
+	<%
+		}
+	%>
 </body>
 </html>
