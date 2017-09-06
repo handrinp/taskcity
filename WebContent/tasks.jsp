@@ -39,8 +39,9 @@ if (session.getAttribute("userDTO") == null) {
 					boolean isOdd = true;
 
 					if (tasks.isEmpty()) {
+						isOdd = !isOdd;
 				%>
-				<div id="cFull" class="tableRow evenRow">No more tasks :)</div>
+				<div id="cFull" class="tableRow oddRow">No more tasks :)</div>
 				<%
 					} else {
 
@@ -157,8 +158,7 @@ if (session.getAttribute("userDTO") == null) {
 				onclick="submitPopUp()">&#10004;</button>
 		</div>
 	</div>
-	<script type="text/javascript"
-		src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
