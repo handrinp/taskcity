@@ -164,7 +164,7 @@ input[type=text] {
 	#scheduleTable, #noAfterTable {
 		font-size: 1.1em;
 	}
-	#mainContent, #scheduleTable, .tableRow, #headerRow {
+	#mainContent, .tableRow, #headerRow {
 		width: 100%;
 	}
 	#headerRow, #lastRow {
@@ -215,7 +215,6 @@ input[type=text] {
 		text-align: center;
 	}
 	.tableRow {
-		width: 100%;
 		height: 60px;
 		line-height: 60px;
 	}
