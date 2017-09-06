@@ -56,6 +56,7 @@ abbr, acronym {
 	border: 0;
 }
 
+/*********** END RESET STYLES ***********/
 body {
 	background-color: #ccc;
 	color: #000;
@@ -142,10 +143,6 @@ div span {
 #scheduleTable p {
 	font-size: 18px;
 	padding: 3px;
-}
-
-#loadingSpinner {
-	margin: 0 auto;
 }
 
 #popUnder {
