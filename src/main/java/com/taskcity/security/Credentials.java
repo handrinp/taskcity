@@ -1,5 +1,6 @@
 package com.taskcity.security;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -7,6 +8,7 @@ import com.taskcity.Logger;
 
 public class Credentials {
 	private static Credentials instance;
+	private static final String PROPERTIES_LOCATION = "/var/lib/taskcity/taskcity.properties";
 
 	private Properties properties;
 
@@ -14,9 +16,7 @@ public class Credentials {
 		properties = new Properties();
 
 		try {
-			properties.load(Thread.currentThread()
-					.getContextClassLoader()
-					.getResourceAsStream("taskcity.properties"));
+			properties.load(new FileInputStream(PROPERTIES_LOCATION));
 		} catch (IOException e) {
 			Logger.log("Failed loading taskcity.properties", e);
 		}
