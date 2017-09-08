@@ -3,6 +3,20 @@
 var currentDueValue; // global variable for due millis
 
 /*******************************************************************************
+ * String hacks
+ ******************************************************************************/
+function a2hex(str) {
+	var arr = [];
+
+	for (var i = 0, l = str.length; i < l; i++) {
+		var hex = Number(str.charCodeAt(i)).toString(16);
+		arr.push(hex);
+	}
+
+	return arr.join('');
+}
+
+/*******************************************************************************
  * Startup
  ******************************************************************************/
 $(document).ready(function() {
@@ -27,8 +41,8 @@ function addTask() {
 	var subj = document.getElementById('subject').value;
 	var desc = document.getElementById('task').value;
 
-	window.location = "/addTask?taskID=" + id + "&taskSubject=" + subj
-			+ "&taskDescription=" + desc + "&taskDue=" + currentDueValue;
+	window.location = "/addTask?taskID=" + id + "&taskSubject=" + a2hex(subj)
+			+ "&taskDescription=" + a2hex(desc) + "&taskDue=" + currentDueValue;
 }
 
 /*******************************************************************************

@@ -32,8 +32,8 @@ public class AddTaskServlet extends HttpServlet {
 			session.setAttribute("error", "Need taskid parameter to delete a task");
 		} else {
 			String id = request.getParameter("taskID");
-			String subject = request.getParameter("taskSubject");
-			String desc = request.getParameter("taskDescription");
+			String subject = hexToAscii(request.getParameter("taskSubject"));
+			String desc = hexToAscii(request.getParameter("taskDescription"));
 			long due = Long.parseLong(request.getParameter("taskDue"));
 			TaskDTO newTask = new TaskDTO(id, subject, desc, due);
 			DataFactory.getInstance()
@@ -52,5 +52,16 @@ public class AddTaskServlet extends HttpServlet {
 						.isEmpty()
 				|| request.getParameter("taskDescription")
 						.isEmpty();
+	}
+
+	private static String hexToAscii(String hexStr) {
+		StringBuilder output = new StringBuilder();
+
+		for (int i = 0; i < hexStr.length(); i += 2) {
+			String str = hexStr.substring(i, i + 2);
+			output.append((char) Integer.parseInt(str, 16));
+		}
+
+		return output.toString();
 	}
 }
