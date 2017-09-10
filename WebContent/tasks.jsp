@@ -1,7 +1,6 @@
 <%@page import="com.taskcity.data.dto.UserDTO"%>
 <%@page import="com.taskcity.data.dto.TaskDTO"%>
 <%@page import="java.util.List"%>
-<%@page import="java.util.stream.Collectors"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%
