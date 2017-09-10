@@ -57,29 +57,30 @@
 						<span>report any suggestions/glitches <a href="report">here</a></span>
 					</p>
 				</div>
-				<div id="lastRow" class="tableRow oddRow">
-					<form action="/login" method="GET">
-						<div class="c1 desktop">
-							<p>Log in or sign up</p>
-						</div>
-						<div class="c1 mobile">
-							<p>Log in</p>
-						</div>
-						<div class="c2">
-							<input type="text" id="accountId" name="username">
-						</div>
-						<div class="c3">
-							<button class="loginButton" type="submit">Go</button>
-						</div>
-					</form>
-				</div>
+			</div>
+			<div id="lastRow" class="tableRow oddRow">
+				<form action="/login" method="GET">
+					<div class="c1 desktop">
+						<p>Log in or sign up</p>
+					</div>
+					<div class="c1 mobile">
+						<p>Log in</p>
+					</div>
+					<div class="c2">
+						<input type="text" id="accountId" name="username">
+					</div>
+					<div class="c3">
+						<button class="loginButton" type="submit">Go</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<%
-		String err;
-		if ((err = (String) session.getAttribute("error")) != null) {
+		String err = (String) session.getAttribute("error");
+
+		if (err != null) {
 			session.removeAttribute("error");
 	%>
 	<div id="popUnder"></div>
@@ -107,6 +108,40 @@
 		}
 	</script>
 	<%
+		} else {
+			String attemptedUser = (String) session.getAttribute("attemptedUser");
+
+			if (attemptedUser != null) {
+	%>
+	<div id="popUnder"></div>
+	<div id="errorPopUp">
+		<div class="popUpRow">
+			<h2>User does not exist</h2>
+		</div>
+		<div class="popUpRow">
+			<button type="button" class="loginButton" onclick="createUser()">Create
+				User</button>
+			<button type="button" class="deleteButton"
+				onclick="closeErrorPopUp()">&#x2717;</button>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$('document').ready(function() {
+			$('#popUnder').css('display', 'block');
+			$('#errorPopUp').css('display', 'block');
+		});
+
+		function closeErrorPopUp() {
+			$('#popUnder').css('display', 'none');
+			$('#errorPopUp').css('display', 'none');
+		}
+
+		function createUser() {
+			window.location = "/account";
+		}
+	</script>
+	<%
+		}
 		}
 	%>
 </body>
