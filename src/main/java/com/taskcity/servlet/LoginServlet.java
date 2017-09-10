@@ -26,17 +26,23 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		Logger.setLogger(getServletContext());
-		String to = "/";
-		HttpSession session = request.getSession();
 		String username = request.getParameter("username");
+		HttpSession session = request.getSession();
+		session.removeAttribute("userDTO");
 		UserDTO userDTO;
+		String to = "/";
 
-		if (username != null && (userDTO = userDataSource.getUser(username)) != null) {
-			session.setAttribute("userDTO", userDTO);
-			to = "/tasks";
+		if (username != null) {
+			if ((userDTO = userDataSource.getUser(username)) != null) {
+				session.setAttribute("userDTO", userDTO);
+				to = "/tasks";
+			} else {
+				Logger.log("going to /account");
+				session.setAttribute("username", username);
+				to = "/account";
+			}
 		} else {
-			session.removeAttribute("userDTO");
-			session.setAttribute("error", "Invalid username");
+			session.setAttribute("error", "You must enter a username");
 		}
 
 		response.sendRedirect(to);
