@@ -29,10 +29,11 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		HttpSession session = request.getSession();
 		session.removeAttribute("userDTO");
-		UserDTO userDTO;
 		String to = "/";
 
 		if (username != null) {
+			UserDTO userDTO;
+
 			if ((userDTO = userDataSource.getUser(username)) != null) {
 				session.setAttribute("userDTO", userDTO);
 				to = "/tasks";

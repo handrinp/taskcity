@@ -113,4 +113,15 @@
 		<servlet-name>account</servlet-name>
 		<url-pattern>/account</url-pattern>
 	</servlet-mapping>
+
+	<!-- Create Account -->
+	<servlet>
+		<servlet-name>createAccount</servlet-name>
+		<servlet-class>com.taskcity.servlet.CreateAccountServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>createAccount</servlet-name>
+		<url-pattern>/createAccount</url-pattern>
+	</servlet-mapping>
 </web-app>
