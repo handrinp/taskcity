@@ -61,6 +61,12 @@ public class MyJSONUserDS implements UserDataSource {
 	}
 
 	@Override
+	public void createNewUser(String username, String subjects) {
+		// ignore subjects because this DS is outdated
+		createNewUser(username);
+	}
+
+	@Override
 	public void deleteUser(String userNameToDelete) {
 		JSONObject jo = JSONUtil.getJSON(USERS_BIN);
 		List<JSONObject> newUserList = new ArrayList<>();

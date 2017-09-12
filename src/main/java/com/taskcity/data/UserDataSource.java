@@ -13,5 +13,7 @@ public interface UserDataSource {
 
 	public void createNewUser(String username);
 
+	public void createNewUser(String username, String subjects);
+
 	public void deleteUser(String username);
 }

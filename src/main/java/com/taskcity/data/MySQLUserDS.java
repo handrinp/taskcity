@@ -68,6 +68,20 @@ public class MySQLUserDS implements UserDataSource {
 		}
 	}
 
+	@Override
+	public void createNewUser(String username, String subjects) {
+		String sql = "insert into users(username, subjects) values (?, ?)";
+
+		try (Connection con = MySQLUtils.getConnection()) {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, username);
+			ps.setString(2, subjects);
+			ps.execute();
+		} catch (SQLException e) {
+			Logger.log("createNewUser failed", e);
+		}
+	}
+
 	public void createNewUser(String username, String hash, String salt, List<String> subjects) {
 		try (Connection con = MySQLUtils.getConnection()) {
 			String sql = "insert into users(username, hash, salt, subjects) values (?, ?, ?, ?)";
