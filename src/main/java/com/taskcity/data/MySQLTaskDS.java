@@ -38,7 +38,21 @@ public class MySQLTaskDS implements TaskDataSource {
 
 	@Override
 	public int numTasks() {
-		return MySQLUtils.countResultsForQuery("select * from tasks where username='" + username + "'");
+		int numTasks = 0;
+
+		try (Connection con = MySQLUtils.getConnection()) {
+			String sql = "select count(*) from count from tasks";
+			ResultSet rs = con.createStatement()
+					.executeQuery(sql);
+
+			if (rs.next()) {
+				numTasks = rs.getInt("count");
+			}
+		} catch (SQLException e) {
+			Logger.log("numTasks failed", e);
+		}
+
+		return numTasks;
 	}
 
 	@Override

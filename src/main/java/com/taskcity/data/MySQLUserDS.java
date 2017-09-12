@@ -33,7 +33,21 @@ public class MySQLUserDS implements UserDataSource {
 
 	@Override
 	public int numUsers() {
-		return MySQLUtils.countResultsForQuery("select * from users");
+		int numUsers = 0;
+
+		try (Connection con = MySQLUtils.getConnection()) {
+			String sql = "select count(*) as count from users";
+			ResultSet rs = con.createStatement()
+					.executeQuery(sql);
+
+			if (rs.next()) {
+				numUsers = rs.getInt("count");
+			}
+		} catch (SQLException e) {
+			Logger.log("numUsers failed", e);
+		}
+
+		return numUsers;
 	}
 
 	@Override
