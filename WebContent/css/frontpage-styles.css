@@ -69,7 +69,7 @@ button {
 	cursor: pointer;
 }
 
-input[type=text] {
+input[type=text], input[type=password] {
 	text-align: center;
 	border: 1px solid #aaa;
 }
@@ -103,7 +103,7 @@ input[type=text] {
 	background-color: #45a;
 }
 
-.tableRow p, .tableRow input[type=text] {
+.tableRow p, .tableRow input[type=text], .tableRow input[type=password] {
 	text-align: center;
 	position: relative;
 	top: 50%;
@@ -188,7 +188,7 @@ input[type=text] {
 
 /*********** DESKTOP STYLES ***********/
 @media only screen and (min-width: 700px) {
-	input[type=text] {
+	input[type=text], input[type=password] {
 		height: 45px;
 		padding: 0 10px;
 		width: 80%;
@@ -252,7 +252,7 @@ input[type=text] {
 		height: 60px;
 		/* 		line-height: 60px; */
 	}
-	.tableRow p, .tableRow input[type=text] {
+	.tableRow p, .tableRow input[type=text], .tableRow input[type=password] {
 		line-height: 20px;
 	}
 	#errorPopUp {
@@ -264,7 +264,7 @@ input[type=text] {
 
 /*********** MOBILE STYLES ***********/
 @media only screen and (max-width: 699px) {
-	input[type=text] {
+	input[type=text], input[type=password] {
 		line-height: 40px;
 		height: 40px;
 		width: 80%;
