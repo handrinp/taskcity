@@ -13,7 +13,9 @@ public interface UserDataSource {
 
 	public void createNewUser(String username);
 
-	public void createNewUser(String username, String subjects);
+	public void createNewUser(String username, String subjects, String password);
+
+	public void updatePassword(UserDTO user);
 
 	public void deleteUser(String username);
 }

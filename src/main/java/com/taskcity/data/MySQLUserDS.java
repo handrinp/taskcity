@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import com.taskcity.Logger;
 import com.taskcity.data.dto.UserDTO;
+import com.taskcity.security.CryptoUtils;
 
 public class MySQLUserDS implements UserDataSource {
 	@Override
@@ -83,13 +84,17 @@ public class MySQLUserDS implements UserDataSource {
 	}
 
 	@Override
-	public void createNewUser(String username, String subjects) {
-		String sql = "insert into users(username, subjects) values (?, ?)";
+	public void createNewUser(String username, String subjects, String password) {
+		String sql = "insert into users(username, subjects, salt, hash) values (?, ?, ?, ?)";
+		String salt = CryptoUtils.generateSalt();
+		String hash = CryptoUtils.hash(password, salt);
 
 		try (Connection con = MySQLUtils.getConnection()) {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, username);
 			ps.setString(2, subjects);
+			ps.setString(3, salt);
+			ps.setString(4, hash);
 			ps.execute();
 		} catch (SQLException e) {
 			Logger.log("createNewUser failed", e);
@@ -120,6 +125,20 @@ public class MySQLUserDS implements UserDataSource {
 			ps.execute();
 		} catch (SQLException e) {
 			Logger.log("deleteUser failed", e);
+		}
+	}
+
+	@Override
+	public void updatePassword(UserDTO user) {
+		try (Connection con = MySQLUtils.getConnection()) {
+			String sql = "update users set hash=?, salt=? where username=?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, user.getHash());
+			ps.setString(2, user.getSalt());
+			ps.setString(3, user.getUsername());
+			ps.execute();
+		} catch (SQLException e) {
+			Logger.log("updatePassword failed", e);
 		}
 	}
 }

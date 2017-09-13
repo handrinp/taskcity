@@ -25,6 +25,11 @@ public class LoginServlet extends HttpServlet {
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		doPost(request, response);
+	}
+
+	@Override
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		Logger.setLogger(getServletContext());
 		String username = request.getParameter("username");
 		HttpSession session = request.getSession();
@@ -32,25 +37,22 @@ public class LoginServlet extends HttpServlet {
 		String to = "/";
 
 		if (username != null) {
-			UserDTO userDTO;
+			UserDTO userDTO = userDataSource.getUser(username);
+			session.setAttribute("userDTO", userDTO);
 
-			if ((userDTO = userDataSource.getUser(username)) != null) {
-				session.setAttribute("userDTO", userDTO);
+			if (username.equals("test")) {
 				to = "/tasks";
 			} else {
-				Logger.log("going to /account");
-				session.setAttribute("username", username);
 				to = "/account";
+
+				if (userDTO == null) {
+					session.setAttribute("newUsername", username);
+				}
 			}
 		} else {
 			session.setAttribute("error", "You must enter a username");
 		}
 
 		response.sendRedirect(to);
-	}
-
-	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		doGet(request, response);
 	}
 }

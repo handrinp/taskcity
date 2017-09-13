@@ -1,14 +1,25 @@
 <%@page import="com.taskcity.data.dto.UserDTO"%>
 <%@page import="com.taskcity.data.dto.TaskDTO"%>
+<%@page import="com.taskcity.security.CryptoUtils"%>
 <%@page import="java.util.List"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%
-UserDTO userDTO;
-if ((userDTO = (UserDTO)session.getAttribute("userDTO")) == null) {
+UserDTO userDTO = (UserDTO)session.getAttribute("userDTO");
+String password = request.getParameter("password");
+
+if (userDTO == null) {
 	session.setAttribute("error", "You must be logged in to view that page");
 	response.sendRedirect("/");
 	return;
+} else if (!(userDTO.getUsername().equals("test"))) {
+	if (userDTO.hasPassword() && !CryptoUtils.verifyPassword(userDTO, password)) {
+		session.setAttribute("error", "Incorrect password");
+		response.sendRedirect("/");
+		return;
+	} else {
+		userDTO.updatePassword(password);
+	}
 }
 %>
 <!DOCTYPE html>

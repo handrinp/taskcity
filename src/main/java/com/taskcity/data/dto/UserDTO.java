@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import com.taskcity.Logger;
 import com.taskcity.data.DataFactory;
+import com.taskcity.security.CryptoUtils;
 
 public class UserDTO {
 	private String username;
@@ -70,6 +71,21 @@ public class UserDTO {
 
 	public String getHash() {
 		return hash;
+	}
+
+	public boolean hasPassword() {
+		return !(salt == null || hash == null);
+	}
+
+	public void updatePassword(String password) {
+		if (!hasPassword()) {
+			salt = CryptoUtils.generateSalt();
+			hash = CryptoUtils.hash(password, salt);
+
+			DataFactory.getInstance()
+					.createUserDataSource()
+					.updatePassword(this);
+		}
 	}
 
 	public List<String> getSubjects() {

@@ -29,12 +29,12 @@ public class CreateAccountServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String to = "/";
 		String username = request.getParameter("username");
+		String subjects = request.getParameter("subjects");
+		String password = request.getParameter("password");
 
-		if (username != null && !username.isEmpty()) {
-			String subjects = request.getParameter("subjects");
-
-			if (subjects != null && !subjects.isEmpty()) {
-				userDataSource.createNewUser(username, subjects);
+		if (isValid(username)) {
+			if (isValid(subjects)) {
+				userDataSource.createNewUser(username, subjects, password);
 				to = "/login?username=" + username;
 			} else {
 				request.setAttribute("error", "You must enter valid subjects");
@@ -44,5 +44,9 @@ public class CreateAccountServlet extends HttpServlet {
 		}
 
 		response.sendRedirect(to);
+	}
+
+	private boolean isValid(String var) {
+		return !(var == null || var.isEmpty());
 	}
 }

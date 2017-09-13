@@ -61,8 +61,8 @@ public class MyJSONUserDS implements UserDataSource {
 	}
 
 	@Override
-	public void createNewUser(String username, String subjects) {
-		// ignore subjects because this DS is outdated
+	public void createNewUser(String username, String subjects, String password) {
+		// ignore subjects, salt, and hash because this DS is outdated
 		createNewUser(username);
 	}
 
@@ -81,5 +81,9 @@ public class MyJSONUserDS implements UserDataSource {
 				});
 		jo.put("users", newUserList);
 		JSONUtil.putJSON(USERS_BIN, jo);
+	}
+
+	@Override
+	public void updatePassword(UserDTO user) {
 	}
 }
