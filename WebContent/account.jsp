@@ -1,9 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.taskcity.data.dto.UserDTO"%>
 <%
-	String username;
+	final int NEW_USER = 0;
+	final int HAS_PASSWORD = 1;
+	final int NEEDS_PASSWORD = 2;
 
-	if ((username = (String) session.getAttribute("username")) == null) {
+	UserDTO userDTO = (UserDTO) session.getAttribute("userDTO");
+
+	int status = userDTO == null ? NEW_USER : userDTO.hasPassword() ? HAS_PASSWORD : NEEDS_PASSWORD;
+	String username = status == NEW_USER ? (String) session.getAttribute("newUsername") : userDTO.getUsername();
+
+	if (username == null) {
 		session.setAttribute("error", "You must enter a username");
 		response.sendRedirect("/");
 		return;
@@ -24,39 +32,25 @@
 </head>
 <body>
 	<div id="mainContent">
-		<form action="/createAccount" method="GET">
-			<input type="hidden" name="username" value="<%=username%>">
-			<div id="scheduleTable">
-				<div id="headerRow" class="tableRow">
-					<div class="cw">taskcity</div>
-				</div>
-				<div id="tableCells">
-					<div class="tableRow oddRow">
-						<p>
-							The username "<%=username%>" doesn't exist. If you want to create
-							that account, fill out the following info and sign up.
-						</p>
-					</div>
-					<div class="tableRow evenRow">
-						<div class="cl">
-							<p>Subjects</p>
-						</div>
-						<div class="cr">
-							<input type="text" id="subjects" name="subjects"
-								value="Misc;School;Social;Work">
-						</div>
-					</div>
-				</div>
-				<div id="lastRow" class="tableRow oddRow">
-					<div class="cleft">
-						<button class="loginButton" type="submit">Sign up</button>
-					</div>
-					<div class="cright">
-						<button class="deleteButton" type="button" onclick="cancel()">Cancel</button>
-					</div>
-				</div>
-			</div>
-		</form>
+		<%
+			switch (status) {
+				case NEW_USER :
+		%>
+		<%@ include file="/accountNewUser.jspf"%>
+		<%
+			break;
+				case HAS_PASSWORD :
+		%>
+		<%@ include file="accountHasPassword.jspf"%>
+		<%
+			break;
+				case NEEDS_PASSWORD :
+		%>
+		<%@ include file="accountNeedsPassword.jspf"%>
+		<%
+			break;
+			}
+		%>
 	</div>
 </body>
 <script>
