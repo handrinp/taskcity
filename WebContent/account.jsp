@@ -6,7 +6,8 @@
 	if ((username = (String) session.getAttribute("username")) == null) {
 		session.setAttribute("error", "You must enter a username");
 		response.sendRedirect("/");
-	} else {
+		return;
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -64,6 +65,3 @@
 	}
 </script>
 </html>
-<%
-	}
-%>

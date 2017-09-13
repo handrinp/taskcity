@@ -8,7 +8,8 @@ UserDTO userDTO;
 if ((userDTO = (UserDTO)session.getAttribute("userDTO")) == null) {
 	session.setAttribute("error", "You must be logged in to view that page");
 	response.sendRedirect("/");
-} else {
+	return;
+}
 %>
 <!DOCTYPE html>
 <html>
@@ -52,7 +53,9 @@ if ((userDTO = (UserDTO)session.getAttribute("userDTO")) == null) {
 					<div class="c2<%=task.isUrgent() ? " urgent" : ""%>">
 						<span><%=task.getDescription()%></span>
 					</div>
-					<div class="c3<%=task.isUrgent() ? " urgent" : ""%>"><p><%=task.dueString()%></p></div>
+					<div class="c3<%=task.isUrgent() ? " urgent" : ""%>">
+						<p><%=task.dueString()%></p>
+					</div>
 					<div class="c4">
 						<button class="deleteButton" type="button"
 							onClick="removeTask('<%=task.getID()%>')">&#x2717;</button>
@@ -161,6 +164,3 @@ if ((userDTO = (UserDTO)session.getAttribute("userDTO")) == null) {
 	<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
-<%
-	}
-%>
