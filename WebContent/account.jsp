@@ -51,7 +51,7 @@
 						<button class="loginButton" type="submit">Sign up</button>
 					</div>
 					<div class="cright">
-						<button class="deleteButton" onclick="cancel()">Cancel</button>
+						<button class="deleteButton" type="button" onclick="cancel()">Cancel</button>
 					</div>
 				</div>
 			</div>
