@@ -2,6 +2,8 @@
 	pageEncoding="ISO-8859-1"%>
 <%
 	session.removeAttribute("userDTO");
+	session.removeAttribute("newUsername");
+	session.removeAttribute("loggedIn");
 %>
 <!DOCTYPE html>
 <html>

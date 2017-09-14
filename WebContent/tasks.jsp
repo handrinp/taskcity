@@ -7,18 +7,27 @@
 <%
 UserDTO userDTO = (UserDTO)session.getAttribute("userDTO");
 String password = request.getParameter("password");
+Boolean isLoggedIn = (Boolean) session.getAttribute("loggedIn");
+if (isLoggedIn == null) isLoggedIn = Boolean.FALSE;
 
 if (userDTO == null) {
 	session.setAttribute("error", "You must be logged in to view that page");
 	response.sendRedirect("/");
 	return;
 } else if (!(userDTO.getUsername().equals("test"))) {
-	if (userDTO.hasPassword() && !CryptoUtils.verifyPassword(userDTO, password)) {
-		session.setAttribute("error", "Incorrect password");
-		response.sendRedirect("/");
-		return;
-	} else {
-		userDTO.updatePassword(password);
+	if (!isLoggedIn) {
+		if (userDTO.hasPassword()) {
+			if (!CryptoUtils.verifyPassword(userDTO, password)) {
+				session.setAttribute("error", "Incorrect password");
+				response.sendRedirect("/");
+				return;	
+			} else {
+				// logged in successfully
+				session.setAttribute("loggedIn", Boolean.TRUE);
+			}
+		} else {
+			userDTO.updatePassword(password);
+		}	
 	}
 }
 %>
