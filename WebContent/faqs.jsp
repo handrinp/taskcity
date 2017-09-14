@@ -40,18 +40,6 @@
 				</div>
 				<div class="cp tableRow oddRow">
 					<p>
-						<span>&#9679; when do I get my page?</span>
-					</p>
-				</div>
-				<div class="cp tableRow evenRow">
-					<p>
-						<span>soon - <a href="mailto:drezell47@gmail.com">email
-								me</a> if it's taking too long
-						</span>
-					</p>
-				</div>
-				<div class="cp tableRow oddRow">
-					<p>
 						<span>&#9679; how many users exist currently?</span>
 					</p>
 				</div>
