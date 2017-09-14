@@ -108,13 +108,14 @@ input[type=text], select {
 	float: left;
 }
 
+.c3 p {
+	top: 50%;
+	transform: translate(0, -50%);
+}
+
 .tableRow p, .tableRow input[type=text] {
 	text-align: center;
 	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
-	-webkit-transform: translateY(-50%);
 }
 
 div span {
@@ -186,7 +187,6 @@ div span {
 	input[type=text], select {
 		line-height: 45px;
 		height: 45px;
-		padding: 0 10px;
 		margin: 0 -10px;
 	}
 	button {
@@ -201,7 +201,7 @@ div span {
 		position: absolute;
 		margin-top: 50px;
 		left: 50%;
-		transform: translate(-50%, 0%);
+		transform: translate(-50%, 0);
 	}
 	#scheduleTable {
 		width: 600px;
@@ -286,8 +286,8 @@ div span {
 	}
 	#headerRow div {
 		font-size: 1em;
-		height: 90px;
-		line-height: 90px;
+		height: 60px;
+		line-height: 60px;
 	}
 	.tableRow {
 		height: 90px;

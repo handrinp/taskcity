@@ -20,19 +20,19 @@
 </head>
 <body>
 	<div id="mainContent">
-		<div id="headerRow" class="tableRow">
-			<div class="cw">taskcity</div>
-		</div>
 		<div id="scheduleTable">
+			<div id="headerRow" class="tableRow">
+				<div class="cw">taskcity</div>
+			</div>
 			<div id="tableCells">
 				<div class="cp tableRow oddRow">
 					<p>
-						<span>a website for saving tasks and reminders that is...</span>
+						<span>a website for saving tasks and reminders</span>
 					</p>
 				</div>
 				<div class="cp tableRow evenRow">
 					<p>
-						<span>&#9679; beautiful looking on all devices</span>
+						<span>&#9679; beautiful on all devices</span>
 					</p>
 				</div>
 				<div class="cp tableRow oddRow">

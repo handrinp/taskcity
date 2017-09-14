@@ -95,6 +95,11 @@ input[type=text], input[type=password] {
 	height: 60px;
 }
 
+.c3 p {
+	top: 50%;
+	transform: translate(0, -50%);
+}
+
 #headerRow .errorRow {
 	background-color: #c33;
 }
@@ -103,7 +108,8 @@ input[type=text], input[type=password] {
 	background-color: #45a;
 }
 
-.tableRow p, .tableRow input[type=text], .tableRow input[type=password] {
+.tableRow p, .tableRow input[type=text], .tableRow input[type=password]
+	{
 	text-align: center;
 	position: relative;
 	top: 50%;
@@ -234,10 +240,10 @@ input[type=text], input[type=password] {
 	.cl {
 		text-align: right;
 		padding-right: 10px;
-		width: 190px;
+		width: 170px;
 	}
 	.cr {
-		width: 400px;
+		width: 380px;
 	}
 	#headerRow div {
 		font-size: 1.75em;
@@ -252,7 +258,8 @@ input[type=text], input[type=password] {
 		height: 60px;
 		/* 		line-height: 60px; */
 	}
-	.tableRow p, .tableRow input[type=text], .tableRow input[type=password] {
+	.tableRow p, .tableRow input[type=text], .tableRow input[type=password]
+		{
 		line-height: 20px;
 	}
 	#errorPopUp {
@@ -313,12 +320,10 @@ input[type=text], input[type=password] {
 	}
 	.cl {
 		text-align: right;
-		padding: 15px 10px;
 		width: calc(35% - 20px);
 	}
 	.cr {
 		text-align: left;
-		padding: 15px 10px;
 		width: calc(65% - 20px);
 	}
 	#lastRow {
