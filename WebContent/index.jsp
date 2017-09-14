@@ -14,6 +14,7 @@
 <meta name="description"
 	content="A website for saving and viewing tasks">
 <meta name="author" content="Nick Handrick">
+<%@include file="/metaTags.html"%>
 <title>taskcity</title>
 <link rel="stylesheet" href="css/frontpage-styles.css">
 <link rel="icon" href="images/favicon.ico">
