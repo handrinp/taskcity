@@ -57,5 +57,33 @@
 	function cancel() {
 		window.location = "/";
 	}
+
+	function validateForm() {
+		var valid = true;
+
+		var frm = document.forms["login"];
+		var pass = frm["password"];
+		var conf = frm["confirm"];
+		var errMsg = document.getElementById("errorMsg");
+
+		// pass === conf
+		if (pass.value !== conf.value) {
+			errMsg.innerHTML = "Your password and confirmation must match";
+			valid = false;
+		}
+
+		// pass length >= 9
+		if (pass.value.length < 9) {
+			errMsg.innerHTML = "Your password must be at least 9 characters long";
+			valid = false;
+		}
+
+		// show/hide forms
+		fixLastRow(document.getElementById("lastRow"), valid);
+		document.getElementById("errorDiv").style.display = valid ? "none"
+				: "block";
+
+		return valid;
+	}
 </script>
 </html>
