@@ -89,7 +89,7 @@
 	<div id="popUnder"></div>
 	<div id="errorPopUp">
 		<div class="popUpRow">
-			<h2>Error</h2>
+			<h2>Info</h2>
 		</div>
 		<div class="popUpRow">
 			<p><%=err%></p>
