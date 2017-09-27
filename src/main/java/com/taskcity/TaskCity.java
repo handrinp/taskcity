@@ -2,16 +2,15 @@ package com.taskcity;
 
 import java.util.Properties;
 
-import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import com.taskcity.security.Credentials;
+import com.taskcity.security.EmailAuth;
 
 public class TaskCity {
 	private static TaskCity instance;
@@ -32,20 +31,14 @@ public class TaskCity {
 
 	public boolean sendEmail(String subject, String body) {
 		String[] emailProps = creds.getEmailProperties()
-				.split("|");
+				.split("\\|");
 		Properties props = new Properties();
 		props.put("mail.smtp.host", emailProps[0]);
 		props.put("mail.smtp.socketFactory.port", emailProps[1]);
 		props.put("mail.smtp.socketFactory.class", emailProps[2]);
 		props.put("mail.smtp.auth", emailProps[3]);
 		props.put("mail.smtp.port", emailProps[4]);
-
-		Session session = Session.getDefaultInstance(props, new Authenticator() {
-			@Override
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(creds.getEmailFrom(), creds.getEmailPassword());
-			}
-		});
+		Session session = Session.getDefaultInstance(props, new EmailAuth());
 
 		try {
 			MimeMessage message = new MimeMessage(session);
