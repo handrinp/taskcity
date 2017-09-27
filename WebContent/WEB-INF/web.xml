@@ -124,4 +124,15 @@
 		<servlet-name>createAccount</servlet-name>
 		<url-pattern>/createAccount</url-pattern>
 	</servlet-mapping>
+
+	<!-- Send Email -->
+	<servlet>
+		<servlet-name>sendEmail</servlet-name>
+		<servlet-class>com.taskcity.servlet.SendEmailServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>sendEmail</servlet-name>
+		<url-pattern>/sendEmail</url-pattern>
+	</servlet-mapping>
 </web-app>

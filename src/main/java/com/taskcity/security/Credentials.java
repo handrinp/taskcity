@@ -18,7 +18,7 @@ public class Credentials {
 		try {
 			properties.load(new FileInputStream(PROPERTIES_LOCATION));
 		} catch (IOException e) {
-			Logger.log("Failed loading taskcity.properties", e);
+			Logger.log("Failed loading properties " + PROPERTIES_LOCATION, e);
 		}
 	}
 
@@ -40,5 +40,21 @@ public class Credentials {
 
 	public String getDBConnectionURL() {
 		return properties.getProperty("database.connectionURL");
+	}
+
+	public String getEmailTo() {
+		return properties.getProperty("admin.email.to");
+	}
+
+	public String getEmailFrom() {
+		return properties.getProperty("admin.email.from");
+	}
+
+	public String getEmailPassword() {
+		return properties.getProperty("admin.email.password");
+	}
+
+	public String getEmailProperties() {
+		return properties.getProperty("admin.email.properties");
 	}
 }
