@@ -13,60 +13,80 @@
 <body>
 	<div id="mainContent">
 		<div id="scheduleTable">
-			<div id="headerRow" class="tableRow">
-				<div class="cw errorRow">taskcity - report</div>
-			</div>
-			<div id="tableCells">
-				<div class="cp tableRow oddRow">
-					<p>
-						<span>report any bugs/suggestions here</span>
-					</p>
+			<form name="emailForm" action="/sendEmail" method="POST">
+				<div id="headerRow" class="tableRow">
+					<div class="cw errorRow">taskcity - report</div>
 				</div>
-				<div class="cp tableRow evenRow">
-					<p>
-						<span>fixing/implementing these is my #1 priority</span>
-					</p>
-				</div>
-				<div class="cp tableRow oddRow">
-					<div class="cl">
+				<div id="tableCells">
+					<div class="cp tableRow oddRow">
 						<p>
-							<span>contact info</span>
+							<span>report any bugs/suggestions here</span>
 						</p>
 					</div>
-					<div class="cr">
-						<input type="text" id="contactInfo">
-					</div>
-				</div>
-				<div class="cp tableRow evenRow">
-					<div class="cl">
+					<div class="cp tableRow evenRow">
 						<p>
-							<span>bug/suggestion</span>
+							<span>fixing/implementing these is my #1 priority</span>
 						</p>
 					</div>
+
+					<div class="cp tableRow oddRow">
+						<p>
+							<span>What's your email address or phone number, so I can
+								reach you? (optional)</span>
+						</p>
+					</div>
+					<div class="cp tableRow evenRow">
+						<input type="text" id="contact" name="contact">
+					</div>
+
+					<div class="cp tableRow oddRow">
+						<p>
+							<span>What type of issue is this? <span
+								class="color: #f00">*</span></span>
+						</p>
+					</div>
+					<div class="cp tableRow evenRow">
+						<select id="issue" name="issue">
+							<option value="bug">Bug/Glitch</option>
+							<option value="feature">Suggestion/Improvement</option>
+							<option value="other">Other</option>
+						</select>
+					</div>
+
+					<div class="cp tableRow oddRow">
+						<p>
+							<span>What kind of device are you using? <span
+								class="color: #f00">*</span></span>
+						</p>
+					</div>
+					<div class="cp tableRow evenRow">
+						<select id="device" name="device">
+							<option value="android">Android</option>
+							<option value="ios">iOS</option>
+							<option value="computer">Laptop/Desktop</option>
+							<option value="other">Other</option>
+						</select>
+					</div>
+
+					<div class="cp tableRow oddRow">
+						<p>
+							<span>Describe your issue. Give as many relevant details
+								as you can.</span>
+						</p>
+					</div>
+					<div class="cp tableRow evenRow tallBoy">
+						<textarea form="reportForm" id="description" name="description"></textarea>
+					</div>
+				</div>
+				<div id="lastRow" class="tableRow oddRow">
+					<div class="cl">
+						<button type="submit">Submit</button>
+					</div>
 					<div class="cr">
-						<input type="text" id="reportInfo">
+						<button type="button" onclick="window.location='../'">Cancel</button>
 					</div>
 				</div>
-				<div class="cp tableRow oddRow">
-					<p>
-						<span>Suggestion won't fit here? <a
-							href="mailto:drezell47@gmail.com">Email me</a>!
-						</span>
-					</p>
-				</div>
-				<div class="cp tableRow evenRow">
-					<div class="cw">
-						<button type="button" class="loginButton">Submit Report</button>
-					</div>
-				</div>
-			</div>
-			<div id="lastRow" class="tableRow oddRow">
-				<div class="cw">
-					<p>
-						<a href="../">back to the main page</a>
-					</p>
-				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 </body>

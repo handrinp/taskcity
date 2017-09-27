@@ -19,11 +19,14 @@ public class SendEmailServlet extends HttpServlet {
 
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		String messageBody = "Contact Info: " + request.getParameter("contactInfo") + System.lineSeparator()
-				+ "Bug/Suggestion: " + request.getParameter("messageBody") + System.lineSeparator();
+		String messageBody = String.format("Contact info: %s%nIssue type: %s%nDevice: %s%nDescription: %s%n",
+				request.getParameter("contact"), request.getParameter("issue"), request.getParameter("device"),
+				request.getParameter("description"));
 		boolean emailSent = TaskCity.getInstance()
 				.sendEmail("TaskCity Bug/Suggestion Report", messageBody);
 
 		String result = emailSent ? "Report filed successfully!" : "Something went wrong when filing a report :(";
+		request.setAttribute("error", result);
+		response.sendRedirect("/");
 	}
 }
